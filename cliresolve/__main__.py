@@ -3,10 +3,18 @@
 
 """
 import sys
+from .const import ExitStatus
 
 
 def main():
-    print("cliresolve is ready~~")
+    try:
+        from .core import main
+
+        exit_status = main()
+    except KeyboardInterrupt:
+        exit_status = ExitStatus.ERROR_CTRL_C
+
+    sys.exit(exit_status.value)
 
 
 if __name__ == "__main__":
