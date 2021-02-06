@@ -4,6 +4,7 @@
 
 RSLV="./rslv.sh"
 BIN_DIR="/usr/local/bin/rslv"
+DATABASE="~/.rslv.db"
 H1="\n\n\033[0;32m\#\#\# "
 H1END=" \#\#\# \033[0m\n"
 

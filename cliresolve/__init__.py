@@ -1,5 +1,5 @@
 """
-CLI-Resolve: Make alias resolve in cli.
+CLI-Resolve(rslv): Make and resolve alias in CLI.
 
 """
 

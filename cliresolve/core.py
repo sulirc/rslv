@@ -1,15 +1,18 @@
+from textwrap import dedent
+
+from . import __doc__, __version__
 from .const import ExitStatus
 from .argparser import RslvArgumentParser
 
 parser = RslvArgumentParser(
     prog="rslv",
-    description="rslv(cli-resolve) CLI ⛳️ - register and resolve alias resource path",
-    epilog="""
-    Enjoy it and have fun.
-    More information please refer to README.md
+    description="%s ⛳️" % __doc__,
+    epilog=dedent('''
+    Enjoy rslv and have fun.
+    More information please refer to README.md:
 
     https://github.com/sulirc/rslv
-    """)
+    '''))
 
 
 def main():
