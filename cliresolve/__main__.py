@@ -6,7 +6,7 @@ import sys
 
 
 def main():
-    print("cliresolve is ready")
+    print("cliresolve is ready~~")
 
 
 if __name__ == "__main__":
