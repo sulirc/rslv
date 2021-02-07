@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-ROOT_DIR=$(pwd)
+# use make setenv to update ENV_RSLV_DIR
+ENV_RSLV_DIR=/Users/sulirc/Desktop/rslv
 MODULE="cliresolve"
 CLIRSV_DIR="$ROOT_DIR/$MODULE"
 SYSTEM_PYTHON3=$(which python3)
@@ -23,13 +24,13 @@ function pprint() {
     if [[ $SILENT -eq 0 ]]; then
         echo -e "$BC$LOG$NC"
     elif [[ $SILENT -eq 1 ]]; then
-        echo "$LOG" >>.rslv.runtime.log
+        echo "$LOG" >>"$ENV_RSLV_DIR/.rslv.runtime.log"
     fi
 }
 
 function cli_rslv() {
     pprint "$CLIRSV_DIR"
-    eval "$SYSTEM_PYTHON3 -m $MODULE" "$@"
+    eval "PYTHONPATH=$ENV_RSLV_DIR $SYSTEM_PYTHON3 -m $MODULE" "$@"
 }
 
 cli_rslv "$@"
