@@ -1,8 +1,12 @@
 import os
-import subprocess
+import sys
 
 from . import __delimiter__, __cache_file__
 from .util import to_alias_map, to_alias_text
+
+
+class RslvAliasNotFoundError(NotImplementedError):
+    pass
 
 
 class RslvAction:
@@ -53,6 +57,8 @@ class RslvAction:
             self.update_alias(alias, path)
         else:
             self.create_alias(alias, path)
+        
+        print("Register Ok")
 
         return self.alias_map
 
@@ -62,20 +68,20 @@ class RslvAction:
         e.g.
         rslv -R @react
         """
-        pass
+        print("Unregister Ok")
 
-    def handle_cli_exec(self, cmd, alias):
+    def handle_cli_exec(self, alias):
         """rslv exec command
 
         e.g.
         rslv -e cd @react
         """
-        # print(cmd, alias)
         path = self.alias_map.get(alias)
         if path:
-            print(f"rslv expand alias `{alias}` to path `{path}`")
+            print(path, file=sys.stdout)
         else:
-            print(f"rslv can not find alias `{alias}`, please register it first")
+            origin_path = alias
+            print(origin_path, file=sys.stdout)
 
     def handle_cli_list(self):
         """rslv list command
@@ -85,5 +91,6 @@ class RslvAction:
         @preact => a/b/c/preact
         @react => path/to/react
         """
+        print("Registered alias list:")
         for alias, path in self.alias_map.items():
             print(f'{alias}{__delimiter__}{path}')

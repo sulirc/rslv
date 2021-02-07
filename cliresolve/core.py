@@ -17,17 +17,13 @@ rslv = RslvAction()
 def main():
     parser.add_argument('-v', '--version', action="version",
                         version="%(prog)s {}".format(__version__))
-    parser.add_argument('-e', '--exec', nargs=2, help="execuate cmd")
+    parser.add_argument('-e', '--expand', nargs=1, help="expand alias")
     parser.add_argument('-l', '--list', action="store_true",
                         help='List all registered alias')
     parser.add_argument('-r', '--register', nargs=2, help='Register an alias')
     parser.add_argument('-R', '--unregister', help='Unregister an alias')
-    parser.add_argument(
-        '-w', '--wrap', help='Wrap a shell command with the rslv ability')
 
     args = parser.parse_args()
-
-    # print(args)
 
     if args.register:
         rslv.handle_cli_register(*args.register)
@@ -35,8 +31,8 @@ def main():
     if args.unregister:
         rslv.handle_cli_unregister(*args.unregister)
 
-    if args.exec:
-        rslv.handle_cli_exec(*args.exec)
+    if args.expand:
+        rslv.handle_cli_exec(*args.expand)
 
     if args.list:
         rslv.handle_cli_list()

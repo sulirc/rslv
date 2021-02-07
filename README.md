@@ -13,7 +13,7 @@ Use rslv to register any resource path and then resolve it as an alias name.
 Register resoure path to your favourite name:
 
 ```bash
-rslv -r @react "~/Desktop/workspace/projects/react"
+rslv -r @examples "/Users/sulirc/Desktop/webpack/examples/"
 ```
 
 List all alias:
@@ -21,14 +21,14 @@ List all alias:
 ```bash
 rslv -l
 
-@react => "~/Desktop/workspace/projects/react"
-@etc => "~/other/path/to/etc"
+@react => ~/Desktop/workspace/projects/react
+@examples => /Users/sulirc/Desktop/webpack/examples/
 ```
 
 And then try to use it in your terminal:
 
 ```bash
-rslv -e cd @react
+cd $(rslv -e @examples)
 ```
 
 it will expand to `cd ~/Desktop/workspace/projects/react`
@@ -37,29 +37,36 @@ Similarly, rslv can be used in many ways, see below:
 
 ```bash
 # open ~/Desktop/workspace/projects/react/
-rslv -e open @react
+open $(rslv -e @react)
 
 # open editor of folder ~/Desktop/workspace/projects/react/
-rslv -e code @react
+code $(rslv -e @react)
 
 # use less command to view ~/Desktop/workspace/projects/react/README.md
-rslv -e less @react/README.md
+less $(rslv -e @react/README.md)
 ```
 
 Imagine any shell command which can combine with rslv :)
 
 ## Advance
 
-Use `rslv` in an even shorter way.
-
-Alias your frequently and favourite command with `rslv --wrap` in ~/.zshrc or ~/.bashrc.
+Write rslv use case in alias, and then use `rslv` in an even shorter way. (Just like the original way)
 
 ```bash
-alias cd="rslv --wrap cd"
-```
+# rslv commands
+_rslv_cd() {
+  cd $(rslv -e $1)
+}
 
-Then we can use the alias just like the original way.
+_rslv_open() {
+  open $(rslv -e $1)
+}
 
-```bash
-cd @react
+_rslv_code() {
+  code $(rslv -e $1)
+}
+
+alias cd=_rslv_cd
+alias open=_rslv_open
+alias code=_rslv_code
 ```
