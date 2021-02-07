@@ -56,6 +56,7 @@ Copy script below and run in CLI.
 
 ```bash
 cat << 'EOF' >> ~/.zshrc
+
 # rslv alias command wrapper function
 _rslv_cd() {
   cd $(rslv -e "$1")
@@ -73,10 +74,15 @@ _rslv_less() {
   less $(rslv -e "$1")
 }
 
+_rslv_cat() {
+  cat $(rslv -e "$1")
+}
+
 alias cd=_rslv_cd
 alias open=_rslv_open
 alias code=_rslv_code
 alias less=_rslv_less
+alias cat=_rslv_cat
 EOF
 ```
 
