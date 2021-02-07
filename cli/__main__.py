@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""The main entry point. Invoke as `rslv` or `python -m cliresolve`
+"""The main entry point. Invoke as `rslv` or `python -m cli`
 
 """
 import sys

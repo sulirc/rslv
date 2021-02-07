@@ -30,7 +30,7 @@ install: uninstall setenv
 clean:
 	@echo $(H1)Cleaning up$(H1END)
 	@rm -f rslv.*.log
-	@rm -f cliresolve/*.pyc
+	@rm -f cli/*.pyc
 	@rm -f .rslv.sh
 	@rm -f .rslv.db
 	@rm -f .rslv.runtime.log

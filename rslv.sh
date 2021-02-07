@@ -3,7 +3,7 @@ set -e
 
 # use make setenv to update ENV_RSLV_DIR
 ENV_RSLV_DIR=
-MODULE="cliresolve"
+MODULE="cli"
 CLIRSV_DIR="$ROOT_DIR/$MODULE"
 SYSTEM_PYTHON3=$(which python3)
 
