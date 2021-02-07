@@ -20,3 +20,4 @@ install: uninstall
 clean:
 	@echo $(H1)Cleaning up$(H1END)
 	rm -f rslv.*.log
+	rm -f cliresolve/*.pyc

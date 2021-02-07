@@ -4,6 +4,7 @@ set -e
 ROOT_DIR=$(pwd)
 MODULE="cliresolve"
 CLIRSV_DIR="$ROOT_DIR/$MODULE"
+SYSTEM_PYTHON3=$(which python3)
 
 # Get silent env, default to 0
 SILENT="${SILENT:-0}"
@@ -13,18 +14,22 @@ BC="\n\033[0;32m"
 NC="\033[0m\n"
 
 function pprint() {
-    local LOG="CLSV => $@ [$(date)]"
+    local LOG
+    local ARGS
+
+    ARGS="$*"
+    LOG="CLSV => $ARGS [$(date)]"
 
     if [[ $SILENT -eq 0 ]]; then
-        echo -e $BC$LOG$NC
+        echo -e "$BC$LOG$NC"
     elif [[ $SILENT -eq 1 ]]; then
-        echo $LOG >>rslv.runtime.log
+        echo "$LOG" >>rslv.runtime.log
     fi
 }
 
 function cli_rslv() {
     pprint "$CLIRSV_DIR"
-    eval "python3 -m $MODULE $@"
+    eval "$SYSTEM_PYTHON3 -m $MODULE" "$@"
 }
 
 cli_rslv "$@"
