@@ -15,7 +15,7 @@ git clone https://github.com/sulirc/rslv.git
 cd rslv
 
 # Use makefile to setup env
-make install && echo "rslv install ok"
+make install
 
 # Print version
-rslv -v
+rslv -h
