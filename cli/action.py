@@ -86,7 +86,7 @@ class RslvAction:
             print(f"Non-existed alias {alias}")
 
     def handle_cli_expand(self, alias):
-        """rslv exec command
+        """rslv expand command
 
         e.g.
         rslv -e cd @react
