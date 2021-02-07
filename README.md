@@ -4,7 +4,11 @@ Use rslv to register any resource path and then resolve it as an alias name.
 
 # Installation
 
-// WIP
+Copy script below and run in CLI.
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/sulirc/rslv/main/install.sh)
+```
 
 # Usage
 
