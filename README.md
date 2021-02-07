@@ -28,7 +28,7 @@ rslv -l
 And then try to use it in your terminal:
 
 ```bash
-rslv cd @react
+rslv -e cd @react
 ```
 
 it will expand to `cd ~/Desktop/workspace/projects/react`
@@ -37,13 +37,13 @@ Similarly, rslv can be used in many ways, see below:
 
 ```bash
 # open ~/Desktop/workspace/projects/react/
-rslv open @react
+rslv -e open @react
 
 # open editor of folder ~/Desktop/workspace/projects/react/
-rslv code @react
+rslv -e code @react
 
 # use less command to view ~/Desktop/workspace/projects/react/README.md
-rslv less @react/README.md
+rslv -e less @react/README.md
 ```
 
 Imagine any shell command which can combine with rslv :)

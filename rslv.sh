@@ -6,8 +6,8 @@ MODULE="cliresolve"
 CLIRSV_DIR="$ROOT_DIR/$MODULE"
 SYSTEM_PYTHON3=$(which python3)
 
-# Get silent env, default to 0
-SILENT="${SILENT:-0}"
+# Get silent env, default to 1
+SILENT="${SILENT:-1}"
 
 # Colors
 BC="\n\033[0;32m"
