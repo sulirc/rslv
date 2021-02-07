@@ -61,6 +61,9 @@ class RslvAction:
         e.g.
         rslv -r @react "path/to/react"
         """
+        if path == ".":
+            path = os.getcwd()
+
         if self.alias_map.get(alias):
             self.update_alias(alias, path)
         else:
