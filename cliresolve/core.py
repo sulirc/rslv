@@ -21,20 +21,20 @@ def main():
     parser.add_argument('-l', '--list', action="store_true",
                         help='List all registered alias')
     parser.add_argument('-r', '--register', nargs=2, help='Register an alias')
-    parser.add_argument('-R', '--unregister', nargs=1, help='Unregister an alias')
+    parser.add_argument('-R', '--unregister', nargs=1,
+                        help='Unregister an alias')
 
     args = parser.parse_args()
 
     if args.register:
         rslv.handle_cli_register(*args.register)
-
-    if args.unregister:
+    elif args.unregister:
         rslv.handle_cli_unregister(*args.unregister)
-
-    if args.expand:
+    elif args.expand:
         rslv.handle_cli_expand(*args.expand)
-
-    if args.list:
+    elif args.list:
         rslv.handle_cli_list()
+    else:
+        parser.print_help()
 
     return ExitStatus.SUCCESS
