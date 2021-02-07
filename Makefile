@@ -3,7 +3,7 @@
 ###############################################################################
 
 RSLV_DIR="$(shell pwd)"
-RSLV="./rslv.sh"
+RSLV="./.rslv.sh"
 BIN_DIR="/usr/local/bin/rslv"
 DATABASE="~/.rslv.db"
 H1="\n\n\033[0;32m\#\#\# "

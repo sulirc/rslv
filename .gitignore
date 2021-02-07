@@ -5,3 +5,4 @@ __pycache__
 
 .rslv.runtime.log
 .rslv.db
+.rslv.sh

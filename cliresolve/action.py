@@ -87,12 +87,12 @@ class RslvAction:
                     _path += ('/' + p)
                 sys.stdout.write(_path)
             else:
-                sys.stderr.write(alias)
+                sys.stdout.write(alias)
 
     def handle_cli_list(self):
         """rslv list command
 
-        e.g. 
+        e.g.
         rslv -l
         @preact => a/b/c/preact
         @react => path/to/react
