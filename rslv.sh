@@ -18,12 +18,12 @@ function pprint() {
     local ARGS
 
     ARGS="$*"
-    LOG="CLSV => $ARGS [$(date)]"
+    LOG="RSLV => $ARGS [$(date)]"
 
     if [[ $SILENT -eq 0 ]]; then
         echo -e "$BC$LOG$NC"
     elif [[ $SILENT -eq 1 ]]; then
-        echo "$LOG" >>rslv.runtime.log
+        echo "$LOG" >>.rslv.runtime.log
     fi
 }
 
