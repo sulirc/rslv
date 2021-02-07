@@ -90,4 +90,27 @@ alias rcat=_rslv_cat
 EOF
 ```
 
-And then open a new terminal window, try to use original cmd.
+And then open a new terminal window, try to use rcd/ropen/rcode/rless/rcat.
+
+```bash
+rslv -l
+Registered alias list:
+@rslv => /Users/yanguangjie/Desktop/cli-resolve
+@react => /Users/yanguangjie/Desktop/workspace/projects/react
+```
+
+Use rcd to cd registered path by alias
+
+```bash
+rcd @react
+```
+
+Use ropen to open registered path by alias
+
+```bash
+ropen @react
+```
+
+etc.
+
+Hope you enjoy~ 😎
