@@ -3,7 +3,6 @@ CLI-Resolve(rslv): Make and resolve alias in CLI.
 
 """
 import os
-from pathlib import Path
 
 PWD = os.path.dirname(os.path.realpath(__file__))
 RSLV_DIR = os.path.abspath(os.path.join(PWD, os.pardir))
