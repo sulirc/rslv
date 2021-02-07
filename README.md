@@ -78,11 +78,11 @@ _rslv_cat() {
   cat $(rslv -e "$1")
 }
 
-alias cd=_rslv_cd
-alias open=_rslv_open
-alias code=_rslv_code
-alias less=_rslv_less
-alias cat=_rslv_cat
+alias rcd=_rslv_cd
+alias ropen=_rslv_open
+alias rcode=_rslv_code
+alias rless=_rslv_less
+alias rcat=_rslv_cat
 EOF
 ```
 
