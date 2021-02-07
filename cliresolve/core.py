@@ -21,7 +21,7 @@ def main():
     parser.add_argument('-l', '--list', action="store_true",
                         help='List all registered alias')
     parser.add_argument('-r', '--register', nargs=2, help='Register an alias')
-    parser.add_argument('-R', '--unregister', help='Unregister an alias')
+    parser.add_argument('-R', '--unregister', nargs=1, help='Unregister an alias')
 
     args = parser.parse_args()
 

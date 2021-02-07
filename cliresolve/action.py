@@ -47,6 +47,14 @@ class RslvAction:
 
         return self.alias_map
 
+    def remove_alias(self, alias):
+        self.alias_map.pop(alias)
+
+        with open(__cache_file__, 'w') as f:
+            f.writelines(to_alias_text(self.alias_map, __delimiter__))
+
+        return self.alias_map
+
     def handle_cli_register(self, alias, path):
         """rslv register command
 
@@ -68,7 +76,11 @@ class RslvAction:
         e.g.
         rslv -R @react
         """
-        print("Unregister Ok")
+        if self.alias_map.get(alias):
+            self.remove_alias(alias)
+            print("Unregister Ok")
+        else:
+            print(f"Non-existed alias {alias}")
 
     def handle_cli_expand(self, alias):
         """rslv exec command
@@ -97,6 +109,10 @@ class RslvAction:
         @preact => a/b/c/preact
         @react => path/to/react
         """
+        if len(self.alias_map) == 0:
+            print("No alias registered yet. use rslv -r @alias /path/to/resource")
+            return
+
         print("Registered alias list:")
         for alias, path in self.alias_map.items():
             print(f'{alias}{__delimiter__}{path}')
