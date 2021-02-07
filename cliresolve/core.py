@@ -32,7 +32,7 @@ def main():
         rslv.handle_cli_unregister(*args.unregister)
 
     if args.expand:
-        rslv.handle_cli_exec(*args.expand)
+        rslv.handle_cli_expand(*args.expand)
 
     if args.list:
         rslv.handle_cli_list()

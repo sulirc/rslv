@@ -57,7 +57,7 @@ class RslvAction:
             self.update_alias(alias, path)
         else:
             self.create_alias(alias, path)
-        
+
         print("Register Ok")
 
         return self.alias_map
@@ -70,7 +70,7 @@ class RslvAction:
         """
         print("Unregister Ok")
 
-    def handle_cli_exec(self, alias):
+    def handle_cli_expand(self, alias):
         """rslv exec command
 
         e.g.
@@ -78,10 +78,16 @@ class RslvAction:
         """
         path = self.alias_map.get(alias)
         if path:
-            print(path, file=sys.stdout)
+            sys.stdout.write(path)
         else:
-            origin_path = alias
-            print(origin_path, file=sys.stdout)
+            _alias, *_paths = alias.split('/')
+            _path = self.alias_map.get(_alias)
+            if _path:
+                for p in _paths:
+                    _path += ('/' + p)
+                sys.stdout.write(_path)
+            else:
+                sys.stderr.write(alias)
 
     def handle_cli_list(self):
         """rslv list command

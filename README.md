@@ -50,23 +50,34 @@ Imagine any shell command which can combine with rslv :)
 
 ## Advance
 
-Write rslv use case in alias, and then use `rslv` in an even shorter way. (Just like the original way)
+Wrap rslv command in shell alias, and then use `rslv` in an even shorter way. (Just like the original way)
+
+Copy script below and run in CLI.
 
 ```bash
-# rslv commands
+cat << 'EOF' >> ~/.zshrc
+# rslv alias command wrapper function
 _rslv_cd() {
-  cd $(rslv -e $1)
+  cd $(rslv -e "$1")
 }
 
 _rslv_open() {
-  open $(rslv -e $1)
+  open $(rslv -e "$1")
 }
 
 _rslv_code() {
-  code $(rslv -e $1)
+  code $(rslv -e "$1")
+}
+
+_rslv_less() {
+  less $(rslv -e "$1")
 }
 
 alias cd=_rslv_cd
 alias open=_rslv_open
 alias code=_rslv_code
+alias less=_rslv_less
+EOF
 ```
+
+And then open a new terminal window, try to use original cmd.
