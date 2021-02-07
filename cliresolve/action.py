@@ -1,6 +1,28 @@
 import os
 
 
+def to_alias_text(alias_map, delimiter):
+    """alias_map -> alias_text
+    """
+    alias_text = []
+    for alias, path in alias_map.items():
+        alias_text.append(f'{alias}{delimiter}{path}\n')
+
+    return alias_text
+
+
+def to_alias_map(alias_text, delimiter):
+    """alias_text -> alias_map
+    """
+    alias_map = dict()
+
+    for row in alias_text:
+        alias, path = row.split(delimiter)
+        alias_map[alias] = path
+
+    return alias_map
+
+
 class RslvAction:
     def __init__(self):
         self._setup()
@@ -19,20 +41,14 @@ class RslvAction:
     def _create_alias_map(self):
         with open(self.cache_db, 'r') as f:
             table = f.read()
-            rows = table.splitlines()
-            for row in rows:
-                _alias, _path = row.split("=>")
-                self.alias_map[_alias] = _path
+            alias_text = table.splitlines()
+            self.alias_map = to_alias_map(alias_text, self.delimiter)
 
     def update_alias(self, alias, path):
         self.alias_map[alias] = path
 
-        data = []
-        for _alias, _path in self.alias_map.items():
-            data.append(f'{_alias}{self.delimiter}{_path}\n')
-
         with open(self.cache_db, 'w') as f:
-            f.writelines(data)
+            f.writelines(to_alias_text(self.alias_map, self.delimiter))
 
         return self.alias_map
 
@@ -43,10 +59,16 @@ class RslvAction:
 
         return self.alias_map
 
-    def alias_register(self, alias, path):
+    def handle_cli_register(self, alias, path):
         if self.alias_map.get(alias):
             self.update_alias(alias, path)
         else:
             self.create_alias(alias, path)
 
         return self.alias_map
+
+    def handle_cli_list(self):
+        print('Registered alias list:')
+
+        for alias, path in self.alias_map.items():
+            print(f'{alias}{self.delimiter}{path}')
