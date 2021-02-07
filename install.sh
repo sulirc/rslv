@@ -18,4 +18,4 @@ cd rslv
 make install
 
 # Print version
-rslv -h
+rslv -v
