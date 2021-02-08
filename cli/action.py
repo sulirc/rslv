@@ -3,6 +3,7 @@ import sys
 
 from . import __delimiter__, __cache_file__
 from .util import to_alias_map, to_alias_text
+from .format import print_msg, print_error, print_alias_map
 
 
 class RslvAliasNotFoundError(NotImplementedError):
@@ -69,7 +70,7 @@ class RslvAction:
         else:
             self.create_alias(alias, path)
 
-        print("Register Ok")
+        print_msg("Register Ok")
 
         return self.alias_map
 
@@ -81,9 +82,9 @@ class RslvAction:
         """
         if self.alias_map.get(alias):
             self.remove_alias(alias)
-            print("Unregister Ok")
+            print_msg("Unregister Ok")
         else:
-            print(f"Non-existed alias {alias}")
+            print_error(f"Non-existed alias {alias}")
 
     def handle_cli_expand(self, alias):
         """rslv expand command
@@ -113,9 +114,9 @@ class RslvAction:
         @react => path/to/react
         """
         if len(self.alias_map) == 0:
-            print("No alias registered yet. use rslv -r @alias /path/to/resource")
+            print_error("No alias registered yet. use rslv -r @alias /path/to/resource")
             return
 
-        print("Registered alias list:")
-        for alias, path in self.alias_map.items():
-            print(f'{alias}{__delimiter__}{path}')
+        print_alias_map(self.alias_map)
+        # for alias, path in self.alias_map.items():
+        #     print(f'{alias}{__delimiter__}{path}')
