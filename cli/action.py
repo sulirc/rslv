@@ -70,7 +70,7 @@ class RslvAction:
         else:
             self.create_alias(alias, path)
 
-        print_msg("Register Ok")
+        print_msg("register ok")
 
         return self.alias_map
 
@@ -82,9 +82,9 @@ class RslvAction:
         """
         if self.alias_map.get(alias):
             self.remove_alias(alias)
-            print_msg("Unregister Ok")
+            print_msg("unregister ok")
         else:
-            print_error(f"Non-existed alias {alias}")
+            print_error(f"alias `{alias}` no exist")
 
     def handle_cli_expand(self, alias):
         """rslv expand command
@@ -114,9 +114,31 @@ class RslvAction:
         @react => path/to/react
         """
         if len(self.alias_map) == 0:
-            print_error("No alias registered yet. use rslv -r @alias /path/to/resource")
+            print_error("empty alias list. use `rslv -r @alias \"/path/to/resource/\"`")
             return
 
         print_alias_map(self.alias_map)
-        # for alias, path in self.alias_map.items():
-        #     print(f'{alias}{__delimiter__}{path}')
+
+    def handle_cli_change(self, old, new):
+        """rslv change command
+
+        e.g.
+        rslv -r @react @preact
+        """
+        # print(old, new)
+        old_alias_path = self.alias_map.get(old)
+        new_alias_path = self.alias_map.get(new)
+        
+        if new_alias_path:
+            print_error(f"alias `{new}` => `{new_alias_path}` already existed")
+            return
+        
+        if not old_alias_path:
+            print_error(f"alias `{old}` no existed")
+            return
+
+        self.alias_map.pop(old)
+        self.alias_map[new] = old_alias_path
+        self.update_alias(new, old_alias_path)
+        print_msg("change ok")
+

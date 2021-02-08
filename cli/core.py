@@ -23,6 +23,8 @@ def main():
     parser.add_argument('-r', '--register', nargs=2, help='Register an alias')
     parser.add_argument('-R', '--unregister', nargs=1,
                         help='Unregister an alias')
+    parser.add_argument('-c', '--change', nargs=2,
+                        help='Change existed alias to a new alias')
 
     args = parser.parse_args()
 
@@ -30,6 +32,8 @@ def main():
         rslv.handle_cli_register(*args.register)
     elif args.unregister:
         rslv.handle_cli_unregister(*args.unregister)
+    elif args.change:
+        rslv.handle_cli_change(*args.change)
     elif args.expand:
         rslv.handle_cli_expand(*args.expand)
     elif args.list:
