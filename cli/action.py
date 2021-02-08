@@ -48,6 +48,13 @@ class RslvAction:
 
         return self.alias_map
 
+    def change_alias(self, old, new):
+        path = self.alias_map[old]
+        self.alias_map.pop(old)
+        self.update_alias(new, path)
+
+        return self.alias_map
+
     def remove_alias(self, alias):
         self.alias_map.pop(alias)
 
@@ -62,6 +69,7 @@ class RslvAction:
         e.g.
         rslv -r @react "path/to/react"
         """
+        # Get absolute path by relative path
         abs_path = os.path.abspath(path)
 
         if self.alias_map.get(alias):
@@ -113,7 +121,8 @@ class RslvAction:
         @react => path/to/react
         """
         if len(self.alias_map) == 0:
-            print_error("empty alias list. use `rslv -r @alias \"/path/to/resource/\"`")
+            print_error(
+                "empty alias list. use `rslv -r @alias \"/path/to/resource/\"`")
             return
 
         print_alias_map(self.alias_map)
@@ -127,17 +136,14 @@ class RslvAction:
         # print(old, new)
         old_alias_path = self.alias_map.get(old)
         new_alias_path = self.alias_map.get(new)
-        
+
         if new_alias_path:
             print_error(f"alias `{new}` => `{new_alias_path}` already existed")
             return
-        
+
         if not old_alias_path:
             print_error(f"alias `{old}` no existed")
             return
 
-        self.alias_map.pop(old)
-        self.alias_map[new] = old_alias_path
-        self.update_alias(new, old_alias_path)
+        self.change_alias(old, new)
         print_msg("change ok")
-
