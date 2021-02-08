@@ -62,13 +62,12 @@ class RslvAction:
         e.g.
         rslv -r @react "path/to/react"
         """
-        if path == ".":
-            path = os.getcwd()
+        abs_path = os.path.abspath(path)
 
         if self.alias_map.get(alias):
-            self.update_alias(alias, path)
+            self.update_alias(alias, abs_path)
         else:
-            self.create_alias(alias, path)
+            self.create_alias(alias, abs_path)
 
         print_msg("register ok")
 
