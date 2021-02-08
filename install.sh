@@ -5,7 +5,7 @@ RSLV="rslv"
 ROOT_DIR=$HOME
 
 # Use HOME to download rslv and delete rslv if exists.
-cd "$ROOT_DIR" && rm -r $RSLV
+cd "$ROOT_DIR" && rm -rf $RSLV
 
 # Download new rslv
 git clone https://github.com/sulirc/rslv.git
