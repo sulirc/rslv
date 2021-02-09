@@ -4,7 +4,7 @@ Use rslv to register any resource path and then resolve it as an alias name.
 
 # Installation
 
-Copy script below and run in CLI.
+Make sure you had install pip3. Then copy this script and run in CLI.
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/sulirc/rslv/main/install.sh)
@@ -54,74 +54,17 @@ Imagine any shell command which can combine with rslv :)
 
 ## Advance
 
-Wrap rslv command in shell alias, and then use `rslv` in an even shorter way. (Just like the original way)
-
-Copy script below and run in CLI.
+Just copy script below and run in CLI. Note: change .zshrc to .bashrc depend on your shell.
 
 ```bash
-SHFILE=
+cat <<'EOF' >>~/.zshrc
 
-if [ -n "$ZSH_VERSION" ]; then
-  SHFILE='.zshrc'
-elif [ -n "$BASH_VERSION" ]; then
-  SHFILE='.bashrc'
-else
-  echo "rslv: unsupported shell" >&2
-  return
-fi
-
-cat <<'EOF' >>~/$SHFILE
-
-# rslv - CLI alias resolve ⛳️
-# https://github.com/sulirc/rslv
-# 
-# usage: rslv [-h] [-v] [-e EXPAND] [-l] [-r REGISTER REGISTER] [-R UNREGISTER] [-c CHANGE CHANGE]
-# 
-# CLI-Resolve(rslv): Make and resolve alias in CLI. ⛳️
-# 
-# optional arguments:
-#   -h, --help            show this help message and exit
-#   -v, --version         show program's version number and exit
-#   -e EXPAND, --expand EXPAND
-#                         expand alias
-#   -l, --list            List all registered alias
-#   -r REGISTER REGISTER, --register REGISTER REGISTER
-#                         Register an alias
-#   -R UNREGISTER, --unregister UNREGISTER
-#                         Unregister an alias
-#   -c CHANGE CHANGE, --change CHANGE CHANGE
-#                         Change existed alias to a new alias
-# 
-# Enjoy rslv and have fun. More information please refer to https://github.com/sulirc/rslv
-# 
-# @version 0.1.0
-# @author sulirc
-
-_rslv_extend_cd() {
-  cd $(rslv -e "$1")
-}
-
-_rslv_extend_open() {
-  open $(rslv -e "$1")
-}
-
-_rslv_extend_code() {
-  code $(rslv -e "$1")
-}
-
-_rslv_extend_less() {
-  less $(rslv -e "$1")
-}
-
-_rslv_extend_cat() {
-  cat $(rslv -e "$1")
-}
-
-alias rcd=_rslv_extend_cd
-alias ropen=_rslv_extend_open
-alias rcode=_rslv_extend_code
-alias rless=_rslv_extend_less
-alias rcat=_rslv_extend_cat
+# rslv alias function
+export rcd() { cd $(rslv -e "$1"); }
+export rcode() { code $(rslv -e "$1"); }
+export rless() { less $(rslv -e "$1"); }
+export rcat() { cat $(rslv -e "$1"); }
+export ropen() { open $(rslv -e "$1"); }
 EOF
 ```
 
