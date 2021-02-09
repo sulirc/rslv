@@ -59,34 +59,69 @@ Wrap rslv command in shell alias, and then use `rslv` in an even shorter way. (J
 Copy script below and run in CLI.
 
 ```bash
-cat << 'EOF' >> ~/.zshrc
+SHFILE=
 
-# rslv alias command wrapper function
-_rslv_cd() {
+if [ -n "$ZSH_VERSION" ]; then
+  SHFILE='.zshrc'
+elif [ -n "$BASH_VERSION" ]; then
+  SHFILE='.bashrc'
+else
+  echo "rslv: unsupported shell" >&2
+  return
+fi
+
+cat <<'EOF' >>~/$SHFILE
+
+# rslv - CLI alias resolve ⛳️
+# https://github.com/sulirc/rslv
+# 
+# usage: rslv [-h] [-v] [-e EXPAND] [-l] [-r REGISTER REGISTER] [-R UNREGISTER] [-c CHANGE CHANGE]
+# 
+# CLI-Resolve(rslv): Make and resolve alias in CLI. ⛳️
+# 
+# optional arguments:
+#   -h, --help            show this help message and exit
+#   -v, --version         show program's version number and exit
+#   -e EXPAND, --expand EXPAND
+#                         expand alias
+#   -l, --list            List all registered alias
+#   -r REGISTER REGISTER, --register REGISTER REGISTER
+#                         Register an alias
+#   -R UNREGISTER, --unregister UNREGISTER
+#                         Unregister an alias
+#   -c CHANGE CHANGE, --change CHANGE CHANGE
+#                         Change existed alias to a new alias
+# 
+# Enjoy rslv and have fun. More information please refer to https://github.com/sulirc/rslv
+# 
+# @version 0.1.0
+# @author sulirc
+
+_rslv_extend_cd() {
   cd $(rslv -e "$1")
 }
 
-_rslv_open() {
+_rslv_extend_open() {
   open $(rslv -e "$1")
 }
 
-_rslv_code() {
+_rslv_extend_code() {
   code $(rslv -e "$1")
 }
 
-_rslv_less() {
+_rslv_extend_less() {
   less $(rslv -e "$1")
 }
 
-_rslv_cat() {
+_rslv_extend_cat() {
   cat $(rslv -e "$1")
 }
 
-alias rcd=_rslv_cd
-alias ropen=_rslv_open
-alias rcode=_rslv_code
-alias rless=_rslv_less
-alias rcat=_rslv_cat
+alias rcd=_rslv_extend_cd
+alias ropen=_rslv_extend_open
+alias rcode=_rslv_extend_code
+alias rless=_rslv_extend_less
+alias rcat=_rslv_extend_cat
 EOF
 ```
 

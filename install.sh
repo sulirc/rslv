@@ -12,7 +12,7 @@ git clone https://github.com/sulirc/rslv.git
 cd rslv
 
 # Install dependencies
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 # Use makefile to setup env
 make install
