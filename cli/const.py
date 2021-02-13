@@ -1,6 +1,9 @@
 from enum import IntEnum
 
 
+RSLV_TITLE = "[bold]\[rslv] ~>[/bold]"
+
+
 class ExitStatus(IntEnum):
     """Program exit status code constants."""
     SUCCESS = 0

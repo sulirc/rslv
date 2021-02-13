@@ -1,8 +1,9 @@
+from .const import RSLV_TITLE
 from rich.console import Console
 from rich.table import Table
 
 console = Console()
-RSLV_TITLE = "[bold]\[rslv] ~>[/bold]"
+
 
 def print_msg(*text) -> None:
     console.print(RSLV_TITLE, *text, style="green")
@@ -19,5 +20,5 @@ def print_alias_map(alias_map: dict) -> None:
 
     for alias, path in alias_map.items():
         table.add_row(alias, path)
-        
+
     console.print(table)

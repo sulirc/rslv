@@ -13,7 +13,6 @@ parser = RslvArgumentParser(
 
 rslv = RslvAction()
 
-
 def main():
     parser.add_argument('-v', '--version', action="version",
                         version="%(prog)s {}".format(__version__))

@@ -4,13 +4,18 @@ Use rslv to register any resource path and then resolve it as an alias name.
 
 # Installation
 
-Make sure you had install pip3. Then copy this script and run in CLI.
+**Make sure you had install pip3.** Then copy this script and run in CLI.
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/sulirc/rslv/main/install.sh)
 ```
 
+It will install rslv for you automatically.
+
 # Usage
+
+
+After installed rslv, you should reload your terminal first.
 
 ## Basic
 

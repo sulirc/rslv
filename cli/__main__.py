@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """The main entry point. Invoke as `rslv` or `python -m cli`
 
 """
