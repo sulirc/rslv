@@ -13,18 +13,21 @@ parser = RslvArgumentParser(
 
 rslv = RslvAction()
 
+
 def main():
     parser.add_argument('-v', '--version', action="version",
                         version="%(prog)s {}".format(__version__))
-    parser.add_argument('-e', '--expand', nargs=1, help="expand alias")
+    parser.add_argument('-e', '--expand', metavar="ALIAS",
+                        nargs=1, help="expand alias")
     parser.add_argument('-l', '--list', action="store_true",
                         help='List all registered alias')
     parser.add_argument('-x', '--clean', action="store_true",
                         help='Clean all registered alias')
-    parser.add_argument('-r', '--register', nargs=2, help='Register an alias')
-    parser.add_argument('-R', '--unregister', nargs=1,
+    parser.add_argument('-r', '--register', metavar=("ALIAS",
+                                                     "PATH"), nargs=2, help='Register an alias')
+    parser.add_argument('-R', '--unregister', metavar="ALIAS", nargs=1,
                         help='Unregister an alias')
-    parser.add_argument('-c', '--change', nargs=2,
+    parser.add_argument('-c', '--change', metavar=("OLD_ALIAS", "NEW_ALIAS"), nargs=2,
                         help='Change existed alias to a new alias')
 
     args = parser.parse_args()
