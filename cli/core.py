@@ -19,6 +19,8 @@ def main():
     parser.add_argument('-e', '--expand', nargs=1, help="expand alias")
     parser.add_argument('-l', '--list', action="store_true",
                         help='List all registered alias')
+    parser.add_argument('-x', '--clean', action="store_true",
+                        help='Clean all registered alias')
     parser.add_argument('-r', '--register', nargs=2, help='Register an alias')
     parser.add_argument('-R', '--unregister', nargs=1,
                         help='Unregister an alias')
@@ -37,6 +39,8 @@ def main():
         rslv.handle_cli_expand(*args.expand)
     elif args.list:
         rslv.handle_cli_list()
+    elif args.clean:
+        rslv.handle_cli_clean()
     else:
         parser.print_help()
 

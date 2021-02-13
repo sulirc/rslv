@@ -127,6 +127,20 @@ class RslvAction:
 
         print_alias_map(self.alias_map)
 
+    def handle_cli_clean(self):
+        """rslv clean command
+
+        e.g.
+        rslv -x
+        """
+        try:
+            os.remove(__cache_file__)
+            print_msg("clean ok")
+        except OSError:
+            print_error(
+                f"clean failed. cache file does not exist, see {__cache_file__}")
+            pass
+
     def handle_cli_change(self, old, new):
         """rslv change command
 
